@@ -1,40 +1,111 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# 🍽️ FoodiesBNB – Desafío MVP
 
-## Getting Started
+Este es el repositorio del **desafío MVP de FoodiesBNB**, una aplicación enfocada en foodies para descubrir y agendar visitas a restaurantes.
 
-First, run the development server:
+Tecnologías utilizadas:
+
+- 🧱 [Next.js](https://nextjs.org) (Pages Router + renderizado del lado del servidor)
+- 💨 [Tailwind CSS](https://tailwindcss.com)
+- 🧩 [shadcn/ui](https://ui.shadcn.dev/) + [Radix UI](https://www.radix-ui.com/)
+- 🛠️ [Supabase](https://supabase.com): autenticación, base de datos y consultas
+- 🔐 Rutas API personalizadas para acciones protegidas
+- 📦 Migraciones de base de datos con scripts personalizados y Supabase CLI
+
+> 🔐 **Cuenta de demostración:**
+> - **Email**: `godoyliam.dev@gmail.com`  
+> - **Contraseña**: `godoyliam.dev@gmail.com`
+
+---
+
+## 🧠 Descripción general
+
+FoodiesBNB permite a los usuarios:
+
+- 📍 Explorar restaurantes por **ubicación** y **tipo de cocina**
+- 🔐 Iniciar sesión de forma segura mediante **Supabase Auth**
+- 🗓️ Registrar y visualizar el historial de **visitas**
+- ❤️ Guardar **favoritos** (No desarrollado)
+- Perfil **favoritos** (Mockeado)
+- 📊 Consultar visitas anteriores y visitar futuras desde la base de datos
+- 🧾 Gestionar datos de restaurantes desde Supabase
+
+Toda la información se consulta directamente desde la base de datos mediante queries eficientes del lado del servidor y endpoints personalizados protegidos.
+
+---
+
+## 🧩 Esquemas de la base de datos
+
+El proyecto utiliza un modelo de base de datos normalizado en Supabase con las siguientes tablas:
+
+- `user`: perfil extendido del usuario (relacionado con `auth.users`)
+- `restaurant`: información de los restaurantes
+- `visit`: historial de visitas del usuario
+- `favorite`: restaurantes guardados
+- `location`: ubicaciones geográficas
+- `type_cooking`: categorías de cocina (ej. Italiana, Japonesa, etc.)
+
+> Las tablas `location` y `type_cooking` están relacionadas mediante claves foráneas con la tabla `restaurant`.
+
+---
+
+## 🚀 Comenzar
+
+### 1. Clonar el repositorio
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/GodoyMS/foodiesbnb-challengue.git
+cd foodiesbnb-challengue
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Instalar dependencias
+```bash
+npm install
+```
+### 3. Ejecutar localmente
+Crear un archivo .env.local en la raíz del proyecto y añadir lo siguiente:
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+```bash
+NEXT_PUBLIC_SUPABASE_URL=tu-url-de-supabase
+NEXT_PUBLIC_SUPABASE_ANON_KEY=tu-clave-anónima
+```
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+### 4. Ejecutar localmente
+```bash
+npm run dev
+```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🧪 Migraciones de base de datos
 
-## Learn More
+Este proyecto utiliza scripts personalizados junto con el **CLI de Supabase** para manejar las migraciones de la base de datos, manteniendo una estructura clara y versionada del esquema.
 
-To learn more about Next.js, take a look at the following resources:
+### 🔧 Requisitos
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+Asegúrate de tener instalado el CLI de Supabase. Puedes seguir la guía oficial aquí:  
+👉 https://supabase.com/docs/guides/cli
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Para instalarlo globalmente:
 
-## Deploy on Vercel
+```bash
+npm install -g supabase
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Linkear el proyecto de supabase localmente
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+```bash
+supabase link --project-ref ******
+```
+
+Crear nuevas migraciones con los scripts personalizados
+
+```bash
+npm run db:migration nueva-migracion
+```
+
+Escribir codigo SQL en el nuevo archivo generado dentro de "supabase/migrations" y pushear los cambios
+
+
+```bash
+npm run db:push
+```
+
