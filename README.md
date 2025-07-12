@@ -14,7 +14,14 @@ Tecnologías utilizadas:
 > 🔐 **Cuenta de demostración:**
 > - **Email**: `godoyliam.dev@gmail.com`  
 > - **Contraseña**: `godoyliam.dev@gmail.com`
+---
 
+## Despliegue
+
+La aplicación está desplegada en Vercel y puedes accederla aquí:
+
+🔗 **Demo en producción:**  
+[https://foodiesbnb-challengue.vercel.app](https://foodiesbnb-challengue.vercel.app)
 ---
 
 ## 🧠 Descripción general
@@ -32,6 +39,7 @@ FoodiesBNB permite a los usuarios:
 Toda la información se consulta directamente desde la base de datos mediante queries eficientes del lado del servidor y endpoints personalizados protegidos.
 
 ---
+
 
 ## 🧩 Esquemas de la base de datos
 
@@ -62,7 +70,7 @@ cd foodiesbnb-challengue
 npm install
 ```
 ### 3. Ejecutar localmente
-Crear un archivo .env.local en la raíz del proyecto y añadir lo siguiente:
+Crear un archivo .env en la raíz del proyecto y añadir lo siguiente:
 
 ```bash
 NEXT_PUBLIC_SUPABASE_URL=tu-url-de-supabase
@@ -90,7 +98,7 @@ Para instalarlo globalmente:
 npm install -g supabase
 ```
 
-Linkear el proyecto de supabase localmente
+Linkear el proyecto de supabase localmente, obtener el id del proyecto y remplazar en  ******
 
 ```bash
 supabase link --project-ref ******
